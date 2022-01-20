@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 /* Layout */
-import Layout from '@/layout'
+import Layout from '@/layout/index.vue'
 
 const routes = [
     // 面试页
