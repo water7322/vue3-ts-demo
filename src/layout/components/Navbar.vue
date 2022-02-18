@@ -1,13 +1,7 @@
-<template>
-  
-</template>
-
-<script>
-export default {
-
-}
+<script setup lang="ts">
+const msg = 1;
 </script>
-
-<style>
-
-</style>
+<template>
+    {{ msg }}
+</template>
+<style></style>

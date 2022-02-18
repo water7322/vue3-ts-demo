@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { AppMain, Navbar } from './components'
+import { AppMain, Navbar } from './components';
 </script>
 
 <template>
     <Navbar />
     <AppMain />
+    <el-button type="primary">asdfsf</el-button>
+    <el-input />
 </template>
 
 <style>
@@ -16,4 +18,9 @@ import { AppMain, Navbar } from './components'
     color: #2c3e50;
     margin-top: 60px;
 }
+</style>
+<style lang="scss" scoped>
+    button {
+        width: 100px;
+    }
 </style>
