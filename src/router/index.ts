@@ -1,37 +1,37 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+// import { createRouter, createWebHashHistory } from './grouter/index';
 /* Layout */
-import Layout from '@/layout/index.vue'
+import Home from '@/views/home.vue';
+// import ScriptSetup from '@/views/demo/script-setup.vue';
+// import Script from '@/views/demo/script.vue';
 
-const routes = [
-    // 面试页
+const routes: RouteRecordRaw[] = [
     {
-        path: '/interview',
-        component: Layout,
-        redirect: '/interview/list',
-        children: [
-            {
-                path: 'list',
-                component: () =>
-                    import(
-                        /* webpackChunkName: "page/main/module/meetcode/interview/group/entry" */ '@/views/interview/list/index.vue'
-                    ),
-                meta: { title: '面试', permission: 'interview', entry: 'interview/list/index' }
-            }
-        ]
+        path:'/',
+        name: 'home',
+        component: Home
     },
     {
-        path: '/:catchAll(.*)',
-        redirect: '/interview/list'
-    }
+        path: '/script-setup',
+        component: () => import('@/views/demo/script-setup.vue'),
+        // component: ScriptSetup,
+    },
+    {
+        path: '/script',
+        component: () => import('@/views/demo/script.vue'),
+        // component: Script,
+    },
+    // 404 page must be placed at the end !!!
+    { path: '/:catchAll(.*)', redirect: '/404' }
 ];
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    // history: createWebHistory(),
+    history: createWebHistory(),
+    // history: createWebHashHistory(),
     routes
 });
 
-router.beforeEach(async (to, from, next) => {
-    next();
-});
+// router.beforeEach(async (to, from, next) => {
+//     next();
+// });
 export default router;
