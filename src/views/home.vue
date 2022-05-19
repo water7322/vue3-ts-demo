@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import TodoList from '@/components/TodoList.vue';
 import { useFullscreen } from '@vueuse/core';
 import Rate from '@/components/Rate.vue';
