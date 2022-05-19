@@ -66,7 +66,7 @@ onBeforeMount(() => {
 const cpnRef = ref<InstanceType<typeof CpnIns>>();
 onMounted(() => {
     console.log('onMounted');
-    console.log(cpnRef.value?.exposeValue);
+    // console.log(cpnRef.value?.exposeValue);
     // console.log(cpnRef.value!.exposeValue2);
 });
 onBeforeUpdate(() => {
