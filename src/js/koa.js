@@ -47,7 +47,7 @@ app.compose(() => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log('2000ms 后 call controller');
-            reject(13);
+            resolve(13);
         }, 2000);
     });
 });

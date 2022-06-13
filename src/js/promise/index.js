@@ -3,8 +3,8 @@ const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 function MyPromise(excutor) {
     this.status = PENDING;
-    this.value = undefined;
-    this.reason = undefined;
+    this.value;
+    this.reason;
     this.onFulfilledCallbacks = [];
     this.onRejectedCallbacks = [];
     const resolve = (value) => {
@@ -44,7 +44,7 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
         return (promise2 = new MyPromise((resolve, reject) => {
             setTimeout(() => {
                 try {
-                    let x = onFulfilled(this.value);
+                    const x = onFulfilled(this.value);
                     resolvePromise(promise2, x, resolve, reject);
                 } catch (e) {
                     reject(e);
@@ -56,7 +56,7 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
         return (promise2 = new MyPromise((resolve, reject) => {
             setTimeout(() => {
                 try {
-                    let x = onRejected(this.reason);
+                    const x = onRejected(this.reason);
                     resolvePromise(promise2, x, resolve, reject);
                 } catch (e) {
                     reject(e);
@@ -64,10 +64,11 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
             });
         }));
     }
+
     return (promise2 = new MyPromise((resolve, reject) => {
         this.onFulfilledCallbacks.push((value) => {
             try {
-                let x = onFulfilled(value);
+                const x = onFulfilled(value);
                 resolvePromise(promise2, x, resolve, reject);
             } catch (e) {
                 reject(e);
@@ -75,7 +76,7 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
         });
         this.onRejectedCallbacks.push((reason) => {
             try {
-                let x = onRejected(reason);
+                const x = onRejected(reason);
                 resolvePromise(promise2, x, resolve, reject);
             } catch (e) {
                 reject(e);
@@ -98,7 +99,7 @@ function resolvePromise(promise2, x, resolve, reject) {
     } else if (x !== null && (typeof x === 'function' || typeof x === 'object')) {
         let called = false;
         try {
-            let then = x.then;
+            const then = x.then;
             if (typeof then === 'function') {
                 then.call(
                     x,
@@ -132,14 +133,29 @@ function test() {
         }, 2000);
     });
 }
-test()
+Promise.resolve(1)
     .then((data) => {
         console.log(data);
+        Promise.resolve().then(() => {
+            console.log('promise 5');
+        });
         return 3;
     })
     .then((data) => {
         console.log(data);
     });
+async function test() {
+    console.log(1);
+    await Promise.resolve(1);
+    console.log(2);
+    await Promise.resolve(2);
+    console.log(3);
+}
+test();
+console.log(12);
+setTimeout(() => {
+    console.log('setTimeout');
+});
 MyPromise.deferred = function () {
     const result = {};
     result.promise = new MyPromise(function (resolve, reject) {
