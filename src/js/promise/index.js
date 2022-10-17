@@ -64,7 +64,6 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
             });
         }));
     }
-
     return (promise2 = new MyPromise((resolve, reject) => {
         this.onFulfilledCallbacks.push((value) => {
             try {
